@@ -1,10 +1,11 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 struct st_girl {//超女结构体
     int age;
     int height;
-    string sc;//身材
+    char sc[100];//身材
     bool yz;//颜值
 }stgirl;
 
@@ -23,7 +24,6 @@ int main()
     cin >> stgirl.sc;
     cout << "请输入颜值：" << endl;
     cin >> stgirl.yz;
-    stgirl = {stgirl.age,stgirl.height,stgirl.sc,stgirl.yz};
     st_girl & ststgirl = stgirl;
     func(ststgirl);
     return 0;
@@ -32,15 +32,15 @@ int main()
 void func(const st_girl &stgirl) {
     int age = stgirl.age;
     int height = stgirl.height;
-    string sc = stgirl.sc;
+    //string sc = stgirl.sc;
     bool yz = stgirl.yz;
-    if (age >= 18 && age <= 25 && height >= 165 && height <= 178 && sc == "火辣" && yz == true) {
+    if (age >= 18 && age <= 25 && height >= 165 && height <= 178 && (strcmp(stgirl.sc,"火辣") == 0) && yz == true) {
         cout << "妃子" << endl;
     }
-    else if (age >= 18 && age <= 30 && height >= 160 && height <= 165 && (sc == "火辣" || sc == "普通") && yz == true) {
+    else if (age >= 18 && age <= 30 && height >= 160 && height <= 165 && ((strcmp(stgirl.sc,"火辣") == 0) || (strcmp(stgirl.sc,"普通") == 0)) && yz == true) {
         cout << "宫女" << endl;
     }
-    else if (age >= 35 && age <= 40 && height >= 155 && height <= 165 && (sc == "普通" || sc == "飞机场") && yz == false) {
+    else if (age >= 35 && age <= 40 && height >= 155 && height <= 165 && ((strcmp(stgirl.sc,"普通") == 0) || (strcmp(stgirl.sc,"飞机场") == 0)) && yz == false) {
         cout << "嬷嬷" << endl;
     }
 }
